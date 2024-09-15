@@ -5,8 +5,8 @@ def solution(n, computers):
     
     count = 0
     for i in range(row_len):
-        stack = [i]
         if visited[i] == 0:
+            stack = [i]
             visited[i] = 1
             count += 1
             while stack:
