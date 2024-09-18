@@ -1,19 +1,17 @@
-from heapq import heappush, heappop
-
 def solution(A, B):
     answer = 0
-    a_heap = []
-    b_heap = []
-    for i in range(len(A)):
-        heappush(a_heap, -A[i])
-        heappush(b_heap, -B[i])
-    
-    while a_heap and b_heap:
-        if a_heap[0] > b_heap[0]:
-            heappop(a_heap)
-            heappop(b_heap)
+    A.sort(reverse=True)
+    B.sort(reverse=True)
+    j = 0
+    l = len(A)
+    for i in range(l):
+        if A[i] < B[j]:
             answer += 1
-        else:
-            heappop(a_heap)
+            j += 1
+            if j == l:
+                break
+                
+        
+        
     
     return answer
