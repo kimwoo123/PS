@@ -4,23 +4,20 @@ def solution(info, query):
     answer = []
     count = dict()
     for each_info in info:
-        lan, group, exp, food, score = each_info.split()
-        score = int(score)
-        if lan not in count:
-            count[lan] = {}
-        node = count[lan]
-        if group not in node:
-            node[group] = {}
-        node = node[group]
-        if exp not in node:
-            node[exp] = {}
-        node = node[exp]
+        i = each_info.split()
+        score = int(i[4])
+        score = i[4] = int(i[4])
+        node = count
+        for k in i[:-2]:
+            if k not in node:
+                node[k] = {}
+            node = node[k]
+        food = i[3]
         if food not in node:
             node[food] = []
         node = node[food]
         node.append(score)
-    
-    visited = set()
+        
     def dfs(node):
         for k in node:
             if k == "pizza" or k == "chicken":
