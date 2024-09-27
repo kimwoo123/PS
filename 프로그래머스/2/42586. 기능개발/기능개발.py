@@ -3,10 +3,9 @@ def remain_day(progres, speed):
 
 def solution(progresses, speeds):
     answer = []
-    l = len(progresses)
     stack = []
-    for i in range(l):
-        remain = remain_day(progresses[i], speeds[i])
+    for progres, speed in zip(progresses, speeds):
+        remain = remain_day(progres, speed)
         count = 0
         while stack and stack[0] < remain:
             del stack[-1]
