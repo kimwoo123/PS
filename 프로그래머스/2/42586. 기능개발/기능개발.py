@@ -7,11 +7,9 @@ def solution(progresses, speeds):
     for progres, speed in zip(progresses, speeds):
         remain = remain_day(progres, speed)
         count = 0
-        while stack and stack[0] < remain:
-            del stack[-1]
-            count += 1
-        if count != 0:
-            answer.append(count)
+        if stack and stack[0] < remain:
+            answer.append(len(stack))
+            stack = []
         stack.append(remain)
         
     if stack:
