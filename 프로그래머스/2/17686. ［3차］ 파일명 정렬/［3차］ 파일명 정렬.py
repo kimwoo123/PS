@@ -12,10 +12,8 @@ def prepro(file):
             tail = file[j:]
             break
     number = int(number)
-    return (head, number, tail, file)
+    return (head.lower(), number)
 
 def solution(files):
-    answer = []
-    for c in sorted(map(prepro, files), key=lambda x: (x[0].lower(), x[1])):
-        answer.append(c[-1])
+    answer = sorted(files, key=lambda x:prepro(x))
     return answer
