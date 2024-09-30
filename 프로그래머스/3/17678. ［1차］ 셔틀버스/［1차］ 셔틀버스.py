@@ -22,9 +22,6 @@ def solution(n, t, m, timetable):
             else:
                 break
         if count == m:
-            # if time_index == l:
-                # answer = time_table[-1] - 1
-            # else:
             answer = time_table[time_index - 1] - 1
         else:
             answer = current
