@@ -10,7 +10,8 @@ def solution(n, s, a, b, fares):
     for k in range(n+1):
         for i in range(n+1):
             for j in range(n+1):
-                matrix[i][j] = min(matrix[i][j], matrix[i][k] + matrix[j][k])
+                if matrix[i][j] > matrix[i][k] + matrix[j][k]:
+                    matrix[i][j] = matrix[i][k] + matrix[j][k]
         
     answer = 100000001
     for i in range(1, n+1):
