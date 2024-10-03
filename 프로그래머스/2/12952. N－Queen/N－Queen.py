@@ -1,5 +1,4 @@
-delta = [(1, 1), (1, -1), (-1, 1), (-1, -1)]
-def is_edible(board, row, col, n):
+def is_edible(board, row):
     for i in range(row):
         if board[row] == board[i] or abs(row-i) == abs(board[row] - board[i]):
             return False
@@ -16,14 +15,13 @@ def backtrack(board, n, index, visited):
         if visited[i] == 0:
             visited[i] = 1
             board.append(i)
-            if is_edible(board, index, i, n):
+            if is_edible(board, index):
                 backtrack(board, n, index + 1, visited)
             board.pop()
             visited[i] = 0
 
 def solution(n):
-    board = []
     visited = [0] * n
-    backtrack(board, n, 0, visited)
+    backtrack([], n, 0, visited)
     
     return answer
