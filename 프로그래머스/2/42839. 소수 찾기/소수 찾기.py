@@ -1,5 +1,3 @@
-from math import sqrt
-
 def get_permutations(numbers, visited, index, l, ret):
     if index == 0:
         yield int(ret)
@@ -15,7 +13,7 @@ def solution(numbers):
     
     erasto = [1] * ll
     erasto[0], erasto[1] = 0, 0
-    end = int(sqrt(ll)) + 1
+    end = int(ll ** 0.5) + 1
     for i in range(2, end):
         if erasto[i] == 0:
             continue
