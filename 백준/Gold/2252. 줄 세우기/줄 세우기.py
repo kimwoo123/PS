@@ -11,11 +11,7 @@ def solution():
         graph[a].append(b)
         indegree[b] += 1
 
-    queue = []
-    for i in range(1, N+1):
-        if indegree[i] == 0:
-            queue.append(i)
-
+    queue = [i for i in range(1, N+1) if indegree[i] == 0]
     answer = []
     while queue:
         node = queue.pop(0)
@@ -26,6 +22,8 @@ def solution():
                 queue.append(next_node)
 
     print(*answer)
+
+
 
 if __name__ == "__main__":
    solution()
