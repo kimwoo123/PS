@@ -21,7 +21,7 @@ def solution():
     edges = [tuple(map(int, input().split())) for _ in range(E)]
     edges.sort(key=lambda x: x[2])
 
-    parents = [i for i in range(V+1)]
+    parents = list(range(V+1))
     total = 0
     for a, b, c in edges:
         ap, bp = find(a, parents), find(b, parents)
