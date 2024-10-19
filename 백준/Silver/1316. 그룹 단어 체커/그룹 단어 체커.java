@@ -3,16 +3,16 @@ import java.io.*;
 
 public class Main {
     private static boolean check(String word) {
-        int[] visited = new int[26];
+        boolean[] visited = new boolean[26];
         int prev = -1;
         int index;
 
         for (char c: word.toCharArray()) {
             index = c - 'a';
             if (index == prev) continue;
-            if (visited[index] == 1) return false;
+            if (visited[index] == true) return false;
             prev = index;
-            visited[index] = 1;
+            visited[index] = true;
         }
         return true;
     }
