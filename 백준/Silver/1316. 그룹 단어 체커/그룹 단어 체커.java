@@ -19,7 +19,6 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
 
         int N = Integer.parseInt(reader.readLine());
         int count = 0;
@@ -29,10 +28,6 @@ public class Main {
             if (check(word)) ++count;
         }
 
-        writer.write(count + "\n");
-
-        reader.close();
-        writer.flush();
-        writer.close();
+        System.out.println(count);
     }
 }
