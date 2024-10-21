@@ -30,9 +30,12 @@ public class Main {
             job_list[i] = job_list[i-1] + Integer.parseInt(tokenizer.nextToken());
 
         int target;
+        StringBuilder builder = new StringBuilder();
         for (int i = 0; i < m; ++i) {
             target = Integer.parseInt(reader.readLine());
-            System.out.println(bisectLeft(job_list, target));
+            builder.append(bisectLeft(job_list, target)).append("\n");
         }
+
+        System.out.print(builder.toString());
     }
 }
