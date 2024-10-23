@@ -17,9 +17,9 @@ public class Main {
         }
     }
 
-    private static void floodFill(int[][] board, int[][] visited, int startRow, int startCol) {
+    private static void floodFill(int[][] board, int startRow, int startCol) {
         Node node = new Node(startRow, startCol);
-        visited[startRow][startCol] = 1;
+        board[startRow][startCol] = 0;
 
         ArrayDeque<Node> queue = new ArrayDeque<>();
         queue.offer(node);
@@ -30,8 +30,8 @@ public class Main {
                 next_row = node.row + delta_row[i];
                 next_col = node.col + delta_col[i];
                 if ((0 <= next_row && next_row < N) && (0 <= next_col && next_col < M)) {
-                    if (board[next_row][next_col] == 1 && visited[next_row][next_col] == 0) {
-                        visited[next_row][next_col] = 1;
+                    if (board[next_row][next_col] == 1) {
+                        board[next_row][next_col] = 0;
                         queue.offer(new Node(next_row, next_col));
                     }
                 }
@@ -60,11 +60,10 @@ public class Main {
             }
 
             int count = 0;
-            int[][] visited = new int[N][M];
             for (int j = 0; j < N; ++j) {
                 for (int k = 0; k < M; ++k) {
-                    if (board[j][k] == 1 && visited[j][k] == 0) {
-                        floodFill(board, visited, j, k);
+                    if (board[j][k] == 1) {
+                        floodFill(board, j, k);
                         ++count;
                     }
                 }
