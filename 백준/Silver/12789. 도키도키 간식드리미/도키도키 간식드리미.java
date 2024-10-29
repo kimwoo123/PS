@@ -14,12 +14,11 @@ public class Main {
 
         tokenizer = new StringTokenizer(reader.readLine());
         tickets = new int[N];
-        for (int i = 0; i < N; ++i)
-            tickets[i] = Integer.parseInt(tokenizer.nextToken());
 
         int order = 1;
         Stack<Integer> stack = new Stack<>();
         for (int i = 0; i < N; ++i) {
+            tickets[i] = Integer.parseInt(tokenizer.nextToken());
             while (stack.isEmpty() == false && stack.peek() < tickets[i]) {
                 if (order != stack.pop()) {
                     System.out.print("Sad");
