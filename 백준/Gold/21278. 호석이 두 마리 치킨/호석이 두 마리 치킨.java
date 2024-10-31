@@ -5,7 +5,7 @@ import java.util.*;
 public class Main {
     static int N, M;
     static int[][] graph;
-    static int minTotal = 500;
+    static int minTotal = 1_000_000_00;
     static int[] building = new int[2];
     static int[] result = new int[2];
 
@@ -14,10 +14,9 @@ public class Main {
             int total = 0;
             for (int i = 1; i < N+1; ++i) {
                 total += Math.min(graph[i][building[0]], graph[i][building[1]]);
-//                System.out.print(graph[i][building[0]] + " " + graph[i][building[1]]);
                 }
-            if (minTotal > total) {
-                minTotal = total;
+            if (minTotal > total*2) {
+                minTotal = total*2;
                 result = building.clone();
             }
             return;
@@ -31,6 +30,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer tokenizer;
+        StringBuilder builder;
 
         tokenizer = new StringTokenizer(reader.readLine());
         N = Integer.parseInt(tokenizer.nextToken());
@@ -38,13 +38,13 @@ public class Main {
 
         graph = new int[N+1][N+1];
         for (int i=0; i<N+1; ++i) {
-            Arrays.fill(graph[i], 500);
+            Arrays.fill(graph[i], 1_000_000_00);
         }
 
-        for (int i = 0; i <= N; ++i) {
+        for (int i = 0; i < N+1; ++i) {
             graph[i][i] = 0;
         }
-        
+
         int a, b;
         for (int i = 0; i < M; ++i) {
             tokenizer = new StringTokenizer(reader.readLine());
@@ -64,6 +64,6 @@ public class Main {
         }
 
         choice(0, 0);
-        System.out.print(result[0] + " " + result[1] + " " + (minTotal * 2));
+        System.out.print(result[0] + " " + result[1] + " " + minTotal);
     }
 }
