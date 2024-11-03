@@ -44,56 +44,30 @@ public class Main {
             serviceList.add(name);
         }
 
+        long normalTotal = 0L;
+        long specialTotal = 0L;
+        long count = 0L;
+
         int N = Integer.parseInt(reader.readLine());
         HashMap<String, Long> countList = new HashMap<>();
         for (int i = 0; i < N; ++i) {
             name = reader.readLine();
-            if (countList.containsKey(name))
-                countList.put(name, countList.get(name) + 1);
+            if (normalList.contains(name))
+                normalTotal += menuList.get(name);
+            else if (specialList.contains(name))
+                specialTotal += menuList.get(name);
             else
-                countList.put(name, 1L);
-        }
-
-        Long value;
-        Long total = 0L;
-        Long sum = 0L;
-        for (String key : countList.keySet()) {
-            value = countList.get(key);
-            if (normalList.contains(key)) {
-                total += menuList.get(key) * value;
-                sum += value;
-            }
-        }
-
-        if (sum != N && total < 20000) {
-            System.out.print("No");
-            return;
-        }
-
-        for (String key : countList.keySet()) {
-            value = countList.get(key);
-            if (specialList.contains(key)) {
-                total += menuList.get(key) * value;
-                sum += value;
-            }
-        }
-
-        if (sum != N && total < 50000) {
-            System.out.print("No");
-            return;
-        }
-
-        Integer count = 0;
-        for (String key : countList.keySet()) {
-            if (serviceList.contains(key)) {
                 ++count;
-            }
         }
 
-        if (count > 1) {
+        if (normalTotal < 20000 && specialTotal > 0) {
             System.out.print("No");
-            return;
+        } else if (normalTotal + specialTotal < 50000 && count > 0){
+            System.out.print("No");
+        } else if (count > 1) {
+            System.out.print("No");
+        } else {
+            System.out.print("Okay");
         }
-        System.out.print("Okay");
     }
 }
