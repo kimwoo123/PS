@@ -20,11 +20,9 @@ public class Main {
         c = Integer.parseInt(tokenizer.nextToken());
 
         result = new int[a+b+c];
-        for (int i = 0; i < a+b+c; ++i) {
-            result[i] = 2;
-        }
+        Arrays.fill(result, 2);
 
-        HashSet<Integer[]> pending = new HashSet<>();
+        ArrayList<int []> pending = new ArrayList<>();
         N = Integer.parseInt(reader.readLine());
         for (int t = 0; t < N; ++t) {
             tokenizer = new StringTokenizer(reader.readLine());
@@ -36,11 +34,11 @@ public class Main {
             if (r == 1) {
                 result[i] = result[j] = result[k] = 1;
             } else {
-                pending.add(new Integer[] {i, j, k});
+                pending.add(new int[] {i, j, k});
             }
         }
 
-        for (Integer[] each : pending) {
+        for (int[] each : pending) {
             i = each[0];
             j = each[1];
             k = each[2];
