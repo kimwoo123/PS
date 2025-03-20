@@ -1,24 +1,32 @@
-def solve_puzzle(level, diffs, times, limit):
+def calculate(diffs, times, level, n, limit):
     total = 0
     before = 0
-    for diff, time_cur in zip(diffs, times):
+    for i in range(n):
+        diff, time = diffs[i], times[i]
         if diff <= level:
-            total += time_cur
+            total += time
         else:
-            c = diff - level 
-            total += (time_cur + before) * c + time_cur
+            total += (diff - level) * (time + before) + time
+    
+        before = time
         if total > limit:
-            return -1
-        before = time_cur
-    return 1
+            return False
+        
+    return True
+        
 
 def solution(diffs, times, limit):
-    start, end = 0, max(diffs)
-    while start + 1 != end:
-        mid = (start + end) // 2
-        level = solve_puzzle(mid, diffs, times, limit)
-        if level > 0:
-            end = mid
+    answer = 300_000
+    n = len(diffs)
+    
+    left = 0
+    right = 300_000
+    while left < right - 1:
+        mid = (left + right) // 2
+        if calculate(diffs, times, mid, n, limit):
+            answer = mid
+            right = mid
         else:
-            start = mid
-    return end
+            left = mid
+    
+    return answer
